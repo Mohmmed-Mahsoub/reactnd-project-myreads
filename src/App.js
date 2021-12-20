@@ -1,25 +1,21 @@
 import "./App.css";
+import { Route, Routes, Navigate } from "react-router-dom";
 //import * as BooksAPI from "./BooksAPI";
 import { useState } from "react";
 import Search from "./pages/search.page";
 import Home from "./pages/home.page";
+import NotFound from "./pages/notFound.page";
 
 function BooksApp() {
-  const [showSearchPage, setShowSearchPage] = useState(false);
-  /**
-   * TODO: Instead of using this state variable to keep track of which page
-   * we're on, use the URL in the browser's address bar. This will ensure that
-   * users can use the browser's back and forward buttons to navigate between
-   * pages, as well as provide a good URL they can bookmark and share.
-   */
-
   return (
     <div className="app">
-      {showSearchPage ? (
-        <Search setShowSearchPage={setShowSearchPage} />
-      ) : (
-        <Home setShowSearchPage={setShowSearchPage} />
-      )}
+      <Routes>
+        <Route path="/notFound" element={<NotFound />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/" exact element={<Home />} />
+        <Route path="/home" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/notFound" />} />
+      </Routes>
     </div>
   );
 }
