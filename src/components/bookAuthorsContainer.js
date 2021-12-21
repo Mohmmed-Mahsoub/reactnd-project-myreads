@@ -1,10 +1,10 @@
 import BookAuthor from "./BookAuthor.Component";
 
-const BookAuthorsContainer = () => {
+const BookAuthorsContainer = ({ authors }) => {
   return (
     <div className="book-authors">
-      {[0].map((el, index) => {
-        return <BookAuthor key={index} />;
+      {authors.map((author, index) => {
+        return <BookAuthor author={author} key={index} />;
       })}
     </div>
   );

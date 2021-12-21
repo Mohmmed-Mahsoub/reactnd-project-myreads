@@ -1,5 +1,7 @@
-const BookShelfTitle = () => {
-  return <h2 className="bookshelf-title">Currently Reading</h2>;
+const BookShelfTitle = ({ shelfTitle }) => {
+  return (
+    <h2 className="bookshelf-title">{shelfTitle.replace(/([A-Z])/g, " $1")}</h2>
+  );
 };
 
 export default BookShelfTitle;
