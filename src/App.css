@@ -185,6 +185,11 @@ button:active {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  text-transform: capitalize;
+}
+.book-shelf-changer select .selected {
+  background-color: #60ac5d;
+  color: #fff;
 }
 
 /* book cover */

@@ -1,6 +1,6 @@
 import Book from "./book.component";
 
-const BooksContainer = ({ pageType, shelfBooks }) => {
+const BooksContainer = ({ pageType, shelfBooks, shelfs }) => {
   return (
     <div
       className={`${
@@ -9,7 +9,7 @@ const BooksContainer = ({ pageType, shelfBooks }) => {
     >
       <ol className="books-grid">
         {shelfBooks.map((shelfBook, index) => {
-          return <Book shelfBook={shelfBook} key={index} />;
+          return <Book shelfs={shelfs} shelfBook={shelfBook} key={index} />;
         })}
       </ol>
     </div>

@@ -3,12 +3,14 @@ import OpenSearch from "../components/openSearch.component";
 import BookShelfContainer from "./../components/bookShelfContainer.component";
 
 const Home = ({ isBooksDataFetched, booksData }) => {
-  /* const shelfs = new Set(
-     booksData.map((book) => {
-      return book.shelf.toLowerCase();
-    }) 
-  );
-  console.log("shelfs", shelfs); */
+  const shelfs = [
+    "none",
+    ...new Set(
+      booksData.map((book) => {
+        return book.shelf;
+      })
+    ),
+  ];
   let shelfsByBooks = {};
   booksData.forEach((book) => {
     const bookShelf = book.shelf;
@@ -29,7 +31,13 @@ const Home = ({ isBooksDataFetched, booksData }) => {
         <div>
           {isBooksDataFetched ? (
             shelfsByBooks.map((shelfsData, index) => {
-              return <BookShelfContainer shelfsData={shelfsData} key={index} />;
+              return (
+                <BookShelfContainer
+                  shelfs={shelfs}
+                  shelfsData={shelfsData}
+                  key={index}
+                />
+              );
             })
           ) : (
             <Loader />
