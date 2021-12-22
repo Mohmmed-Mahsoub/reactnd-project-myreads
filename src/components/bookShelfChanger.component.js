@@ -1,14 +1,40 @@
-const BookShelfChanger = () => {
+import { useEffect, useState } from "react";
+import * as BooksAPI from "../BooksAPI";
+
+const BookShelfChanger = ({
+  shelf,
+  shelfs,
+  bookId,
+  setRerender,
+  rerenderVal,
+}) => {
+  const [currentShelf, setCurrentShelf] = useState("");
+  useEffect(() => {
+    currentShelf ? setCurrentShelf(shelf) : setCurrentShelf("none");
+  }, [currentShelf]);
+  const handleChange = (event) => {
+    const bookIdToUpdate = { id: bookId };
+    BooksAPI.update(bookIdToUpdate, event.target.value);
+    setRerender(!rerenderVal);
+  };
   return (
     <div className="book-shelf-changer">
-      <select>
+      <select value={currentShelf} onChange={handleChange}>
         <option value="move" disabled>
           Move to...
         </option>
-        <option value="currentlyReading">Currently Reading</option>
-        <option value="wantToRead">Want to Read</option>
-        <option value="read">Read</option>
-        <option value="none">None</option>
+        {shelfs.map((shelfValue, index) => {
+          let shelfTxt = shelfValue.replace(/([A-Z])/g, " $1"); //convert camel case to string
+          return (
+            <option
+              key={index}
+              className={currentShelf == shelfValue ? "selected" : ""}
+              value={shelfValue}
+            >
+              {shelfTxt}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

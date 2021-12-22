@@ -1,6 +1,12 @@
 import Book from "./book.component";
 
-const BooksContainer = ({ pageType }) => {
+const BooksContainer = ({
+  pageType,
+  shelfBooks,
+  shelfs,
+  rerenderVal,
+  rerenderWay,
+}) => {
   return (
     <div
       className={`${
@@ -8,9 +14,18 @@ const BooksContainer = ({ pageType }) => {
       }`}
     >
       <ol className="books-grid">
-        {[0, 1].map((el, index) => {
-          return <Book key={index} />;
-        })}
+        {shelfBooks &&
+          shelfBooks.map((shelfBook, index) => {
+            return (
+              <Book
+                shelfs={shelfs}
+                shelfBook={shelfBook}
+                key={index}
+                rerenderWay={rerenderWay}
+                rerenderVal={rerenderVal}
+              />
+            );
+          })}
       </ol>
     </div>
   );
