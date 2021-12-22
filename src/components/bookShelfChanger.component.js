@@ -12,9 +12,9 @@ const BookShelfChanger = ({
   useEffect(() => {
     currentShelf ? setCurrentShelf(shelf) : setCurrentShelf("none");
   }, [currentShelf]);
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const bookIdToUpdate = { id: bookId };
-    BooksAPI.update(bookIdToUpdate, event.target.value);
+    await BooksAPI.update(bookIdToUpdate, event.target.value);
     setRerender(!rerenderVal);
   };
   return (
