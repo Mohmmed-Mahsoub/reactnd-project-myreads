@@ -2,15 +2,8 @@ import Loader from "../components/loader";
 import OpenSearch from "../components/openSearch.component";
 import BookShelfContainer from "./../components/bookShelfContainer.component";
 
-const Home = ({ isBooksDataFetched, booksData }) => {
-  const shelfs = [
-    "none",
-    ...new Set(
-      booksData.map((book) => {
-        return book.shelf;
-      })
-    ),
-  ];
+const Home = ({ isBooksDataFetched, booksData, rerenderVal, rerenderWay }) => {
+  const shelfs = ["none", "currentlyReading", "wantToRead", "read"];
   let shelfsByBooks = {};
   booksData.forEach((book) => {
     const bookShelf = book.shelf;
@@ -35,6 +28,8 @@ const Home = ({ isBooksDataFetched, booksData }) => {
                 <BookShelfContainer
                   shelfs={shelfs}
                   shelfsData={shelfsData}
+                  rerenderWay={rerenderWay}
+                  rerenderVal={rerenderVal}
                   key={index}
                 />
               );

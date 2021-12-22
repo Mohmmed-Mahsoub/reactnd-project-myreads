@@ -8,6 +8,7 @@ import NotFound from "./pages/notFound.page";
 
 function BooksApp() {
   const [isBooksDataFetched, setIsBooksDataFetched] = useState(false);
+  const [rerender, setRerender] = useState(false);
   const [booksData, setBooksData] = useState([]);
   useEffect(async () => {
     try {
@@ -18,7 +19,7 @@ function BooksApp() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [rerender]);
   return (
     <div className="app">
       <Routes>
@@ -31,6 +32,8 @@ function BooksApp() {
             <Home
               isBooksDataFetched={isBooksDataFetched}
               booksData={booksData}
+              rerenderWay={setRerender}
+              rerenderVal={rerender}
             />
           }
         />
