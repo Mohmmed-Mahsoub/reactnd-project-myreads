@@ -1,6 +1,6 @@
-import BooksContainer from "../components/booksContainer.component";
 import CloseSearch from "../components/closeSearch.component";
 import SearchInput from "../components/searchInput.component";
+import SearchResultsContainer from "../components/searchResultsContainer.component";
 
 const Search = () => {
   return (
@@ -9,7 +9,7 @@ const Search = () => {
         <CloseSearch />
         <SearchInput />
       </div>
-      <BooksContainer pageType="search" />
+      <SearchResultsContainer />
     </div>
   );
 };

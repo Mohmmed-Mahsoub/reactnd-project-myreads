@@ -12,7 +12,6 @@ const BookShelfContainer = ({
       <BookShelfTitle shelfTitle={shelfsData[0]} />
       <BooksContainer
         shelfs={shelfs}
-        pageType="home"
         shelfBooks={shelfsData[1]}
         rerenderWay={rerenderWay}
         rerenderVal={rerenderVal}
