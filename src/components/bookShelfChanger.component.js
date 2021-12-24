@@ -9,7 +9,7 @@ const BookShelfChanger = ({
   rerenderVal,
   booksShelvesData,
 }) => {
-  const [currentShelf, setCurrentShelf] = useState("");
+  const [currentShelf, setCurrentShelf] = useState("none");
   useEffect(() => {
     if (shelf) {
       setCurrentShelf(shelf);
