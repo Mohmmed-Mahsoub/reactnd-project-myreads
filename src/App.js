@@ -24,7 +24,16 @@ function BooksApp() {
     <div className="app">
       <Routes>
         <Route path="/notFound" element={<NotFound />} />
-        <Route path="/search" element={<Search />} />
+        <Route
+          path="/search"
+          element={
+            <Search
+              rerenderWay={setRerender}
+              rerenderVal={rerender}
+              booksShelvesData={booksData}
+            />
+          }
+        />
         <Route
           path="/"
           exact

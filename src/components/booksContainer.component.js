@@ -1,18 +1,8 @@
 import Book from "./book.component";
 
-const BooksContainer = ({
-  pageType,
-  shelfBooks,
-  shelfs,
-  rerenderVal,
-  rerenderWay,
-}) => {
+const BooksContainer = ({ shelfBooks, shelfs, rerenderVal, rerenderWay }) => {
   return (
-    <div
-      className={`${
-        pageType === "search" ? "search-books-results" : "bookshelf-books"
-      }`}
-    >
+    <div className="bookshelf-books">
       <ol className="books-grid">
         {shelfBooks &&
           shelfBooks.map((shelfBook, index) => {

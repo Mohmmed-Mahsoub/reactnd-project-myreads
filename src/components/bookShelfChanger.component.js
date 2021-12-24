@@ -7,10 +7,23 @@ const BookShelfChanger = ({
   bookId,
   setRerender,
   rerenderVal,
+  booksShelvesData,
 }) => {
-  const [currentShelf, setCurrentShelf] = useState("");
+  const [currentShelf, setCurrentShelf] = useState("none");
   useEffect(() => {
-    currentShelf ? setCurrentShelf(shelf) : setCurrentShelf("none");
+    if (shelf) {
+      setCurrentShelf(shelf);
+    } else if (booksShelvesData) {
+      const targetBook = booksShelvesData.filter(
+        (booksShelfData) => booksShelfData.id === bookId
+      )[0];
+      if (targetBook) {
+        const { shelf } = targetBook;
+        setCurrentShelf(shelf);
+      }
+    } else {
+      setCurrentShelf("none");
+    }
   }, [currentShelf]);
   const handleChange = async (event) => {
     const bookIdToUpdate = { id: bookId };
@@ -28,7 +41,7 @@ const BookShelfChanger = ({
           return (
             <option
               key={index}
-              className={currentShelf == shelfValue ? "selected" : ""}
+              className={currentShelf === shelfValue ? "selected" : ""}
               value={shelfValue}
             >
               {shelfTxt}
