@@ -2,8 +2,19 @@ import BookAuthorsContainer from "./bookAuthorsContainer";
 import BookCover from "./bookCover.component";
 import BookShelfChanger from "./bookShelfChanger.component";
 import BookTitle from "./bookTitle.component";
-const Book = ({ shelfBook, shelfs, rerenderVal, rerenderWay }) => {
-  const { title, authors, imageLinks, shelf, id } = shelfBook;
+const Book = ({
+  shelfBook,
+  shelfs,
+  rerenderVal,
+  rerenderWay,
+  searchResult,
+  booksShelvesData,
+}) => {
+  if (shelfBook) {
+    var { title, authors, imageLinks, shelf, id } = shelfBook;
+  } else {
+    var { title, authors, imageLinks, shelf, id } = searchResult;
+  }
 
   return (
     <li>
@@ -16,6 +27,7 @@ const Book = ({ shelfBook, shelfs, rerenderVal, rerenderWay }) => {
             shelf={shelf}
             setRerender={rerenderWay}
             rerenderVal={rerenderVal}
+            booksShelvesData={booksShelvesData}
           />
         </div>
         <BookTitle title={title} />
